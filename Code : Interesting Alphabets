@@ -1,0 +1,37 @@
+Code : Interesting Alphabets
+Print the following pattern for the given number of rows.
+Pattern for N = 5
+E
+DE
+CDE
+BCDE
+ABCDE
+Input format :
+N (Total no. of rows)
+Output format :
+Pattern in N lines
+Constraints
+0 <= N <= 26
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.Scanner;
+
+public class Solution {
+       public static void main(String[] args) {
+ Scanner sc =new Scanner(System.in);
+              int num = sc.nextInt();
+              int i = 1;
+              int ch = num;
+              while(i<=num) {
+                     int j = 1;
+                     int count =  'A'+ch-1;
+                     while (j<=i) {
+                            System.out.print((char)(count));
+                            j++;
+                            count++;
+                     }
+                     System.out.println();
+                     i++;
+                     ch--;
+              }
