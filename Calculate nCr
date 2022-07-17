@@ -1,0 +1,27 @@
+Calculate nCr of the number given as input
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.Scanner;
+
+public class ABC {
+    public static int factorial(int n) {
+        int fact = 1;
+        for(int i=1; i<=n; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int r = sc.nextInt();
+
+        int num = factorial(n);
+        int den2 = factorial(r);
+        int den3 = factorial(n-r);
+        int ans = num/(den2*den3);
+        System.out.println(ans);
+         }
+}
