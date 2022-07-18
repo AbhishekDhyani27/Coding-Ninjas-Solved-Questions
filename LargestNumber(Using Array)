@@ -1,0 +1,49 @@
+Write a program to print the array and determine its size and the largest number from the give elements that we input. 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.Scanner;
+
+public class ABC {
+    public static int[] inputArray() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the size of an Array: ");
+        int size = sc.nextInt();
+        int[] arr = new int[size];
+        System.out.println("Enter the elements: ");
+        for(int i=0; i<= arr.length-1; i++) {
+            arr[i] = sc.nextInt();
+        }
+        return arr;
+    }
+
+    public static void printArray(int[] arr) {
+        System.out.println("Now the elements in the Array is:");
+        for(int i=0; i<= arr.length-1; i++) {
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+
+    public static int largest(int[] arr) {
+        int max = Integer.MIN_VALUE;
+        for(int i=0; i<= arr.length-1; i++) {
+            if(arr[i]>max) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = inputArray();
+        printArray(arr);
+        int large = largest(arr);
+        System.out.println("Largest= "+large);
+    }
+}
+
+
+
+
+
