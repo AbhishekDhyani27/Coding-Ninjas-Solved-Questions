@@ -1,0 +1,88 @@
+Rotate array
+
+You have been given a random integer array/list(ARR) of size N. Write a function that rotates the given array/list by D elements(towards the left).
+ Note:
+Change in the input array/list itself. You don't need to return or print the elements.
+Input format :
+The first line contains an Integer 't' which denotes the number of test cases or queries to be run. Then the test cases follow.
+
+First line of each test case or query contains an integer 'N' representing the size of the array/list.
+
+Second line contains 'N' single space separated integers representing the elements in the array/list.
+
+Third line contains the value of 'D' by which the array/list needs to be rotated.
+Output Format :
+For each test case, print the rotated array/list in a row separated by a single space.
+
+Output for every test case will be printed in a separate line.
+Constraints :
+1 <= t <= 10^4
+0 <= N <= 10^6
+0 <= D <= N
+Time Limit: 1 sec
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+
+
+public class Solution {  
+
+    public static void rotate(int[] arr, int d) {
+    	//Your code goes here
+           int[] ans = new int[d];
+               int k = 0;
+               while (k< ans.length) {
+                   ans[k] = arr[k];
+                   k++;
+               }
+               int i = 0;
+               while(i < arr.length-d) {
+                   arr[i] = arr[i+d];
+                   i++;
+               }
+               int j = 0;
+               i = arr.length-d;
+               while (j< d && i< arr.length) {
+                   arr[i] = ans[j];
+                   j++;
+                   i++;
+               }
+    }
+}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+
+public class ABC {
+        public static void rotate(int[] arr, int d) {
+            int[] ans = new int[d];
+            int k = 0;
+            while (k< ans.length) {
+                ans[k] = arr[k];
+                k++;
+            }
+            int i = 0;
+            while(i < arr.length-d) {
+                arr[i] = arr[i+d];
+                i++;
+            }
+            int j = 0;
+            i = arr.length-d;
+            while (j< d && i< arr.length) {
+                arr[i] = ans[j];
+                j++;
+                i++;
+            }
+        }
+        public static void main(String[] args) {
+               int[] arr = {1,2,3,4,5,6,7};
+               int d = 2;
+               rotate(arr,d);
+               for(int i=0; i< arr.length; i++) {
+                       System.out.print(arr[i]+" ");
+               }
+        }
+}
+
+
+
+
+
