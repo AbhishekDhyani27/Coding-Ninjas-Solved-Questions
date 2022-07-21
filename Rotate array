@@ -28,6 +28,9 @@ public class Solution {
 
     public static void rotate(int[] arr, int d) {
     	//Your code goes here
+     if(arr.length == 0) {
+                return;
+            }
            int[] ans = new int[d];
                int k = 0;
                while (k< ans.length) {
@@ -53,6 +56,9 @@ public class Solution {
 
 public class ABC {
         public static void rotate(int[] arr, int d) {
+        if(arr.length == 0) {
+                return;
+            }
             int[] ans = new int[d];
             int k = 0;
             while (k< ans.length) {
