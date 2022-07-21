@@ -3,7 +3,7 @@ Write a program to print reverse of a string.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 public class ABC {
-        public static String countWords(String str) {
+        public static String ReverseString(String str) {
                 String str2= "";
                 for(int i=str.length()-1; i>=0; i--) {
                         str2 += str.charAt(i);
@@ -22,7 +22,7 @@ public class ABC {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 public class ABC {
-        public static String countWords(String str) {
+        public static String ReverseString(String str) {
                 String str2= "";
                 for(int i=0 ; i<=str.length()-1; i++) {
                         str2 = str.charAt(i) + str2;
