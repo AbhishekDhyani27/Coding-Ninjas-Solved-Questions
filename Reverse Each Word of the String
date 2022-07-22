@@ -1,0 +1,34 @@
+Program to find reverse of each word of the string
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+
+public class ABC {
+        public static String eachWordReverse(String str) {
+                String ans = "";
+                int i=0;
+                int currentWordStart = 0;
+                for(; i<str.length(); i++) {
+                        if(str.charAt(i)==' ') {
+                                int currentWordEnd = i-1;
+                                String reversedWord = "";
+                                for(int j=currentWordEnd; j>=currentWordStart; j--) {
+                                        reversedWord = reversedWord + str.charAt(j);
+                                }
+                                ans = ans + reversedWord + " ";
+                                currentWordStart = i+1;
+                        }
+                }
+                int currentWordEnd = i-1;
+                String reversedWord = "";
+                for(int j=currentWordEnd; j>=currentWordStart; j--) {
+                        reversedWord = reversedWord + str.charAt(j);
+                }
+                ans += reversedWord + " ";
+                return ans;
+        }
+        public static void main(String[] args) {
+                String str = "I Love Coding";
+                String ans = eachWordReverse(str);
+                System.out.println(ans);
+        }
+}
