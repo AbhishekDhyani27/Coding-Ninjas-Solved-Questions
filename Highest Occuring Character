@@ -1,0 +1,54 @@
+Highest Occuring Character
+
+For a given a string(str), find and return the highest occurring character.
+Example:
+Input String: "abcdeapapqarr"
+Expected Output: 'a'
+Since 'a' has appeared four times in the string which happens to be the highest frequency character, the answer would be 'a'.
+If there are two characters in the input string with the same frequency, return the character which comes first.
+Consider:
+Assume all the characters in the given string to be in lowercase always.
+Input Format:
+The first and only line of input contains a string without any leading and trailing spaces.
+Output Format:
+The only line of output prints the updated string. 
+Note:
+You are not required to print anything explicitly. It has already been taken care of.
+Constraints:
+0 <= N <= 10^6
+Where N is the length of the input string.
+
+Time Limit: 1 second
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+public class Solution {
+
+	public static char highestOccuringChar(String str) {
+		//Your code goes here
+        //Your code goes here
+        int[] freq = new int[str.length()];
+        char MaxChar = str.charAt(0);
+        char[] String = str.toCharArray();
+        int i = 0;
+        for (; i < String.length; i++) {
+            freq[i] = 1;
+            for (int j = i + 1; j < String.length; j++) {
+                if (String[i]==String[j] && String[i]!=' ' && String[i]!='0') {
+                    freq[i]++;
+                    //Set string[j] to 0 to avoid printing visited character
+                    String[j] = '0';
+                }
+            }
+        }
+        int max = freq[0];
+        for(i = 0; i <freq.length; i++) {
+            if(max < freq[i]) {
+                max = freq[i];
+                MaxChar = String[i];
+            }
+        }
+        return MaxChar;
+	}
+}
