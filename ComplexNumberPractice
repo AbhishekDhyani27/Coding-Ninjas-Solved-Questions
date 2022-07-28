@@ -1,0 +1,76 @@
+public class ComplexNumber {
+    private int real;
+    private int imaginary;
+
+    public ComplexNumber(int real,int imaginary) {
+        this.real = real;
+        this.imaginary = imaginary;
+    }
+
+    public int getImaginary() {
+        return imaginary;
+    }
+
+    public void setImaginary(int imaginary) {
+        this.imaginary = imaginary;
+    }
+
+    public int getReal() {
+        return real;
+    }
+
+    public void setReal(int real) {
+        this.real = real;
+    }
+
+    public void add(ComplexNumber c2) {
+        this.real = this.real+c2.real;
+        this.imaginary = this.imaginary+c2.imaginary;
+    }
+
+    public void multiply(ComplexNumber c2) {
+        this.real = (this.real*c2.real)+(this.imaginary*c2.imaginary);
+        this.imaginary = (this.real*c2.imaginary)+(this.imaginary*c2.real);
+    }
+
+    public static ComplexNumber add(ComplexNumber c1, ComplexNumber c2) {
+        int newReal = (c1.real*c2.real)+(c1.imaginary*c2.imaginary);
+        int newImaginary = (c1.real*c2.imaginary)+(c1.imaginary*c2.real);
+        ComplexNumber c = new ComplexNumber(newReal,newImaginary);
+        return c;
+    }
+
+    public void print() {
+        if(imaginary==0) {
+            System.out.println(real);
+        }
+        else {
+            System.out.println(real+"+"+imaginary+"i");
+        }
+    }
+
+    public static void main(String[] args) {
+        ComplexNumber c1 = new ComplexNumber(1,2);
+//        c1.print();
+//
+//        c1.setReal(4);
+//        c1.setImaginary(2);
+//        int real = c1.getReal();
+//        System.out.println(real);
+//        int imaginary = c1.getImaginary();
+//        System.out.println(imaginary);
+//        c1.print();
+
+        ComplexNumber c2 = new ComplexNumber(4,6);
+//        c1.add(c2);
+//        c1.print();
+        c2.print();
+//        c1.multiply(c2);
+        c1.print();
+
+        ComplexNumber c3 = ComplexNumber.add(c1,c2);
+        c1.print();
+        c2.print();
+        c3.print();
+    }
+}
