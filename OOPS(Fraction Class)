@@ -1,0 +1,98 @@
+public class Fraction {
+    private int numerator;
+    private int denominator;
+    public Fraction(int numerator, int denominator) {
+        this.numerator = numerator;
+        if(denominator==0) {
+            return;
+        }
+        this.denominator = denominator;
+        simplify();
+    }
+
+    public int getDenominator() {
+        return denominator;
+    }
+
+    public int getNumerator() {
+        return numerator;
+    }
+
+    public void setNumerator(int n) {
+        this.numerator = n;
+        simplify();
+    }
+
+    public void setDenominator(int d) {
+        if(d==0) {
+            return;
+        }
+        this.denominator = d;
+        simplify();
+    }
+
+    public void add(Fraction f2) {
+        this.numerator = this.numerator* f2.denominator + this.denominator*f2.numerator;
+        this.denominator = this.denominator*f2.denominator;
+        simplify();
+    }
+
+    public void multiply(Fraction f2) {
+        this.numerator = this.numerator*f2.numerator;
+        this.denominator = this.denominator*f2.denominator;
+        simplify();
+    }
+
+    public static Fraction Add(Fraction f1, Fraction f2) {
+        int newNum = f1.numerator*f2.denominator+f2.numerator*f1.denominator;
+        int newDen = f1.denominator*f2.denominator;
+        Fraction f = new Fraction(newNum,newDen);
+        return f;
+    }
+
+    private void simplify() {
+        int gcd = 1;
+        int smallest = Math.min(numerator,denominator);
+        for(int i=2; i<=smallest; i++) {
+            if(numerator%i==0 && denominator%i==0) {
+                gcd = i;
+            }
+        }
+        this.numerator = numerator/gcd;
+        this.denominator = denominator/gcd;
+    }
+
+    public void print() {
+        if(denominator==1) {
+            System.out.println(numerator);
+        }
+        else {
+            System.out.println(numerator+"/"+denominator);
+        }
+    }
+
+    public static void main(String[] args) {
+        Fraction f1 = new Fraction(20,30);
+        f1.print();
+
+        f1.setNumerator(50);
+        f1.setDenominator(10);
+        int n = f1.getNumerator();
+        System.out.println(n);
+        int d = f1.getDenominator();
+        System.out.println(d);
+        f1.print();
+
+        Fraction f2 = new Fraction(60,40);
+        f1.add(f2);
+        f1.print();
+
+        f1.multiply(f2);
+        f1.print();
+
+        Fraction f4 = Fraction.Add(f1,f2);
+        f1.print();
+        f2.print();
+        f4.print();
+    }
+}
