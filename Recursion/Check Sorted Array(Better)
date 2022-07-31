@@ -1,0 +1,17 @@
+public class ABC {
+    public static boolean checkSorted(int[] input, int startIndex) {
+       if(startIndex>=input.length-1) {
+           return true;
+       }
+       if(input[startIndex]>input[startIndex+1]) {
+           return false;
+       }
+       boolean ans = checkSorted(input,startIndex+1);
+       return ans;
+    }
+        public static void main(String[] args) {
+            int[] input = {1,2,3,4,5,7};
+            int startIndex = 0;
+            System.out.println(checkSorted(input,startIndex));
+    }
+}
