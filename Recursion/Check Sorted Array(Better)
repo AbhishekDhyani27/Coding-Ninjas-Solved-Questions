@@ -1,5 +1,8 @@
+//In this code we are only taking an array from the user and we do not want him to input start index
+// So we use function Overloading here.
+
 public class ABC {
-    public static boolean checkSorted(int[] input, int startIndex) {
+    private static boolean checkSorted(int[] input, int startIndex) {
        if(startIndex>=input.length-1) {
            return true;
        }
@@ -9,9 +12,12 @@ public class ABC {
        boolean ans = checkSorted(input,startIndex+1);
        return ans;
     }
+
+    public static boolean checkSorted(int[] input) {
+        return checkSorted(input,0);
+    }
         public static void main(String[] args) {
             int[] input = {1,2,3,4,5,7};
-            int startIndex = 0;
-            System.out.println(checkSorted(input,startIndex));
+            System.out.println(checkSorted(input));
     }
 }
