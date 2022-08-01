@@ -1,0 +1,32 @@
+Replace pi (recursive)
+
+Given a string, compute recursively a new string where all appearances of "pi" have been replaced by "3.14".
+
+Constraints :
+1 <= |S| <= 50
+where |S| represents the length of string S. 
+
+Sample Input 1 :
+xpix
+
+Sample Output :
+x3.14x
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
+
+public class solution {
+
+	// Return the changed string
+	public static String replace(String input){
+		// Write your code here
+        if(input.length()<=1) {
+            return input;
+        }
+        String smallAns = replace(input.substring(1));
+        if(smallAns.charAt(0)=='i' && input.charAt(0)=='p')
+            smallAns="3.14" + smallAns.substring(1);
+        else
+            smallAns=input.charAt(0)+smallAns;
+        return smallAns;
+	}
+}
