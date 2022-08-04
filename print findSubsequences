@@ -1,0 +1,21 @@
+  public class FindSubsequences {
+  public static void printSubsequences(String str) {
+        printSubsequences(str," ");
+    }
+
+    private static void printSubsequences(String str, String output) {
+        if(str.length()==0) {
+            System.out.println(output);
+            return;
+        }
+        // if first char not included
+        printSubsequences(str.substring(1),output);
+        // if first char included
+        printSubsequences(str.substring(1),output+str.charAt(0));
+    }
+
+    public static void main(String[] args) {
+        String str = "xyz";
+        printSubsequences(str);
+    }
+}
