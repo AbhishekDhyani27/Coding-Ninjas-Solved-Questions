@@ -30,7 +30,7 @@ public class solution {
 	}
     
     private static int binarySearch(int[] input, int element, int start, int end) {
-        if(start>=end) {
+        if(start>end) {
             return -1;
         }
         int mid = (start+end)/2;
