@@ -44,6 +44,7 @@ public class Node<T> {
 
 
 /*
+// Printing using function
 
 public class Node<T> {
         T data;
@@ -53,7 +54,7 @@ public class Node<T> {
             next = null;
         }
     public static void print(Node<Integer> head) {
-            // that's how we create a head
+            // that's how we create a temp
             Node<Integer> temp = head;
             while(head!=null) {
                 System.out.print(head.data+" "+head.next);
