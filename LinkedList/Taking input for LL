@@ -1,0 +1,93 @@
+// This code has time Complexity of 0(n^2)
+
+public class Node<T> {
+        T data;
+        Node<T> next;
+        Node(T data) {
+            this.data = data;
+            next = null;
+        }
+
+        public static void print(Node<Integer> head) {
+            while(head!=null) {
+                System.out.print(head.data+" "+head.next);
+                System.out.println();
+                head = head.next;
+            }
+        }
+
+        public static Node<Integer> takeInput() {
+            Node<Integer> head = null;
+            Scanner sc = new Scanner(System.in);
+            int data = sc.nextInt();
+
+            while(data != -1) {
+                Node<Integer> newNode = new Node<>(data);
+                if(head==null) {
+                    head = newNode;
+                }
+                else {
+                    Node<Integer> temp = head;
+                    while(temp.next != null) {
+                        temp = temp.next;
+                    }
+                    temp.next = newNode;
+                }
+                data = sc.nextInt();
+            }
+            return head;
+        }
+
+    public static void main(String[] args) {
+            Node<Integer> head = takeInput();
+            print(head);
+    }
+}
+
+
+
+// This code has time Complexity of 0(n)
+
+public class Node<T> {
+        T data;
+        Node<T> next;
+        Node(T data) {
+            this.data = data;
+            next = null;
+        }
+
+        public static void print(Node<Integer> head) {
+            while(head!=null) {
+                System.out.print(head.data+" "+head.next);
+                System.out.println();
+                head = head.next;
+            }
+        }
+
+        public static Polynomial<Integer> takeInput() {
+            Polynomial<Integer> head = null,tail = null;
+            Scanner sc = new Scanner(System.in);
+            int data = sc.nextInt();
+
+            while(data != -1) {
+                Polynomial<Integer> newNode = new Polynomial<>(data);
+                if(head==null) {
+                    head = newNode;
+                    tail = newNode;
+                }
+                else {
+                   tail.next = newNode;
+                   tail = newNode;         //or tail = tail.next
+                }
+                data = sc.nextInt();
+            }
+            return head;
+        }
+
+    public static void main(String[] args) {
+            Node<Integer> head = takeInput();
+            print(head);
+    }
+}
+
+
