@@ -1,0 +1,10 @@
+public static LinkedListNode<Integer> deleteR(LinkedListNode<Integer> head, int position) {
+        if(position==0) {
+            return head.next;
+        }
+        if(head==null) {
+            return head;
+        }
+        head.next = deleteR(head.next,position-1);
+        return head;
+    }
