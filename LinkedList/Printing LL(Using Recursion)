@@ -1,0 +1,7 @@
+public static  void printR(LinkedListNode<Integer> head) {
+        if(head==null) {
+            return;
+        }
+        System.out.print(head.data+" ");
+        printR(head.next);
+    }
