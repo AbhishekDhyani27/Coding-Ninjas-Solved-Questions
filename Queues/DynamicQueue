@@ -1,0 +1,33 @@
+void enqueue(int element)  {
+        // if queue is full
+        if(size == data.length) {
+           // if size is = data.length then we should double the capacity
+            doubleCapacity();
+        }
+        if(size == 0) {
+            front = 0;
+        }
+        size++;
+        rear++;
+        if(rear == data.length) {
+            rear = 0;
+        }
+        data[rear] = element;
+    }
+
+    private void doubleCapacity() {
+        int[] temp = data;
+        data = new int[2* data.length];
+        int index = 0;
+        for(int i = front; i < temp.length; i++) {
+            data[index] = temp[i];
+            index++;
+        }
+        for(int i = 0; i < front-1; i++) {
+            data[index] = temp[i];
+            index++;
+        }
+        // now update front and rear
+        front = 0;
+        rear = temp.length - 1;
+    }
