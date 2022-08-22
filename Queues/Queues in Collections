@@ -1,0 +1,15 @@
+
+public class Queue {
+   public static void main(String[] args) {
+        // we cannot create the object of queue because it's an interface
+        // But we can implement it using LinkedList
+        Queue<Integer> que = new LinkedList<>();
+        que.add(10);
+        que.add(20);
+        que.add(30);
+        System.out.println(que.peek()); // returns the first element
+        System.out.println(que.poll()); // deletes the element from the front
+        System.out.println(que.size()); // returns the size of queue
+        System.out.println(que.isEmpty());
+    }
+}
