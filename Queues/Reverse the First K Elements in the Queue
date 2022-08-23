@@ -1,0 +1,49 @@
+Reverse the First K Elements in the Queue
+
+For a given queue containing all integer data, reverse the first K elements.
+You have been required to make the desired change in the input queue itself.
+
+Input Format :
+The first line of input would contain two integers N and K, separated by a single space. They denote the total number of elements in the queue and the count with which the elements need to be reversed respectively.
+The second line of input contains N integers separated by a single space, representing the order in which the elements are enqueued into the queue.
+
+Output Format:
+The only line of output prints the updated order in which the queue elements are dequeued, all of them separated by a single space. 
+
+Note:
+You are not required to print the expected output explicitly, it has already been taken care of. Just make the changes in the input queue itself.
+
+Contraints :
+1 <= N <= 10^6
+1 <= K <= N
+-2^31 <= data <= 2^31 - 1
+Time Limit: 1sec
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Solution {
+
+	public static Queue<Integer> reverseKElements(Queue<Integer> input, int k) {
+		//Your code goes here
+        Stack<Integer> s = new Stack<>();
+        for(int i = 0; i < k; i++) {    // pushing first k elements in the stack
+            s.push(input.peek());
+            input.poll();
+        }
+        while (!s.isEmpty()) {
+            input.add(s.peek());    // adding first k elements in the queue in the reverse order after remaining elements
+            s.pop();
+        }
+        int n = input.size();  // size of the queue
+        for(int i = 0; i < n-k; i++) {
+            int x = input.peek(); 
+            input.poll();   // popping rest elements
+            input.add(x);   // now adding them in the queue in last
+        }
+        return input;
+	}
+}
