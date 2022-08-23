@@ -30,8 +30,8 @@ public class Solution {
         if(input.isEmpty()){
             return;
         }
-        int top = input.poll();
+        int top = input.poll();  // getting first element
         reverseQueue(input);
-        input.add(top);
+        input.add(top);  // adding first element to the last
 	}
 }
