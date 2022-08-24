@@ -30,9 +30,12 @@ public class Solution {
 
     public static void deleteAlternateNodes(Node<Integer> head) {
         //Your code goes here
+        if(head == null || head.next == null) {
+            return;
+        }
         while(head.next != null){
              if(head.next.next != null){
-             head.next = head.next.next;
+             head.next = head.next.next; // linking odd node to next odd node, while skipping even node between them
              head = head.next;
              }
              else {
