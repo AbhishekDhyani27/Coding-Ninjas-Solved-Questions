@@ -1,0 +1,39 @@
+public class Node {
+    Node left, right;
+    int data;
+
+    public Node(int data) {
+        this.data = data;
+    }
+}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
+
+import java.util.Scanner;
+
+public class TreeUse1 {
+    static Scanner sc = null;
+
+    public static Node takeInput() {
+        Node root = null;
+        System.out.println("Enter data: ");
+        int data = sc.nextInt();
+
+        if(data == -1) {
+            return null;
+        }
+        root = new Node(data);  // creating root node
+        System.out.println("Enter the left for: "+data);
+        root.left = takeInput();
+
+        System.out.println("Enter the right for: "+data);
+        root.right = takeInput();
+
+        return root;
+    }
+
+    public static void main(String[] args) {
+        sc = new Scanner(System.in);
+        Node root = takeInput();
+    }
+}
