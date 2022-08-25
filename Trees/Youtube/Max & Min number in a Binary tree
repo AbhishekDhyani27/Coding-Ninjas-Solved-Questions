@@ -1,0 +1,18 @@
+ public static int maxNumber(Node root) {
+        if(root == null) {
+            return Integer.MIN_VALUE;
+        }
+
+        return Math.max(root.data, Math.max(maxNumber(root.left), maxNumber(root.right)));
+    }
+    
+    
+    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    
+    public static int minNumber(Node root) {
+        if(root == null) {
+            return Integer.MAX_VALUE;
+        }
+
+        return Math.min(root.data, Math.min(minNumber(root.left), minNumber(root.right)));
+    }
