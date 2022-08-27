@@ -1,0 +1,19 @@
+/* Time Complexity here is O(n^2) */
+
+static void printCurrentLevel(Node root, int level) {
+        if(root == null) {
+            return;
+        }
+        if(level == 1) {
+            System.out.println(root.data+" ");
+        }
+        if(level > 1) {
+            printCurrentLevel(root.left, level-1);
+            printCurrentLevel(root.left, level-1);
+        }
+    }
+    
+    
+    /* Time Complexity here is O(n) */
+    
+    
