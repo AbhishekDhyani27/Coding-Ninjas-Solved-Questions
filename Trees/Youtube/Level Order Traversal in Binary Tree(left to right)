@@ -1,0 +1,66 @@
+/* Time Complexity here is O(n^2) */
+
+static void printCurrentLevel(Node root, int level) {
+        if(root == null) {
+            return;
+        }
+        if(level == 1) {
+            System.out.println(root.data+" ");
+        }
+        if(level > 1) {
+            printCurrentLevel(root.left, level-1);  
+            printCurrentLevel(root.right, level-1);
+        }
+    }
+    
+    
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'   
+    
+ /* Time Complexity here is O(n) */
+    
+    
+    
+/*output is in a single line*/
+
+public static void printLevelWise(Node root) {
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {   // until queue is empty
+            Node current = q.poll();
+            System.out.print(current.data+" ");
+            if(current.left != null) {
+                q.add(current.left);  // adding left element in the queue
+            }
+            if(current.right != null) {
+                q.add(current.right);  // adding right element in the queue
+            }
+        }
+    }
+    
+    /*Output is in levelwise lines*/
+    
+    public static void printLevelWise(Node root) {
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        while (!q.isEmpty()) {   // until queue is empty
+            Node current = q.poll();
+            if(current == null) {
+                if(q.isEmpty()) {
+                    return;
+                }
+                q.add(null);  //adding null in the last of queue for getting elements of next level
+                System.out.println();
+                continue;
+            }
+            System.out.print(current.data+" ");
+            if(current.left != null) {
+                q.add(current.left);  // adding left element in the queue
+            }
+            if(current.right != null) {
+                q.add(current.right);  // adding right element in the queue
+            }
+        }
+    }
+    
+    
