@@ -1,0 +1,10 @@
+public static int numNodes(TreeNode<Integer> root) {
+        if(root == null) {  // if root is null (i.e. there is no node then return 0)
+            return 0;
+        }
+        int count = 1;
+        for(int i = 0; i < root.children.size(); i++) {
+            count += numNodes(root.children.get(i));
+        }
+        return count;
+    }
