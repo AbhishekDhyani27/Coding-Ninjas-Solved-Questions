@@ -1,0 +1,13 @@
+public static int largestNumber(TreeNode<Integer> root) {
+        if(root == null) {  // if root is null (i.e. there is no node then return 0)
+            return 0;
+        }
+        int ans = root.data;
+        for(int i = 0; i < root.children.size(); i++) {
+             int largest = largestNumber(root.children.get(i));
+             if(largest > ans) {
+                 ans = largest;
+             }
+        }
+        return ans;
+    }
