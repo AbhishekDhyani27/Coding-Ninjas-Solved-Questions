@@ -26,15 +26,16 @@ public static TreeNode<Integer> maxSumNode(TreeNode<Integer> root){
         }
 
         for(int i = 0; i < root.children.size(); i++){
-            //get the maximum node using recursion
+            // finding maximum node using recursion
             TreeNode<Integer> childMax = maxSumNode(root.children.get(i));
+            // initializing max node data to smallSum
             int smallSum = childMax.data;
             // calculating sum for max node
-            for(int j = 0; j < childMax.children.size(); j++) {
+            for(int j = 0; j < childMax.children.size(); j++) {			
                 smallSum += childMax.children.get(j).data;
             }
             //comparison & update if necessary
-            if(sum <= smallSum) {
+            if(sum <= smallSum) {            
                 ans = childMax;
                 sum = smallSum;
             }
