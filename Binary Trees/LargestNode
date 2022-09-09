@@ -1,0 +1,17 @@
+ public static int LargestNode(BinaryTreeNode<Integer> root) {
+        if(root == null) {
+            return Integer.MIN_VALUE;
+        }
+        // initially largest is root data
+        int largest = root.data;
+
+        int ans = LargestNode(root.left);
+        if(ans > largest) {
+            largest = ans;
+        }
+        int ans1 = LargestNode(root.right);
+        if(ans1 > largest) {
+            largest = ans1;
+        }
+        return largest;
+    }
