@@ -1,0 +1,11 @@
+public static int NumberOfLeafNodes(BinaryTreeNode<Integer> root) {
+        if(root == null) {
+            return 0;
+        }
+        // if there is root node only, then return 1 only
+        if(root.left == null && root.right == null) {
+            return 1;
+        }
+        
+        return NumberOfLeafNodes(root.left) + NumberOfLeafNodes(root.right);
+    }
