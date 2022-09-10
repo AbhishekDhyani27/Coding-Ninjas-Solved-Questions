@@ -1,0 +1,45 @@
+For a given Binary Tree of type integer and a number X, find whether a node exists in the tree with data X or not.
+
+Input Format:
+The first line of each test case contains elements of the first tree in the level order form. 
+The line consists of values of nodes separated by a single space. In case a node is null, we take -1 in its place.
+The second line of each test case contains the node value you have to find.
+
+Note:
+The above format was just to provide clarity on how the input is formed for a given tree.
+The sequence will be put together in a single line separated by a single space.
+
+Output Format:
+The only line of output prints 'true' or 'false'.
+The output of each test case should be printed in a separate line.
+
+Note:
+You are not required to print anything explicitly. It has already been taken care of.
+
+Constraints:
+1 <= N <= 10^5
+Where N is the total number of nodes in the binary tree.
+Time Limit: 1 sec.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+public class Solution {
+
+	public static boolean isNodePresent(BinaryTreeNode<Integer> root, int x) {
+	    if (root == null) {
+            return false;
+        }
+        if(root.data == x) {
+            return true;
+        }
+        // checking on left subtree
+        boolean ans = isNodePresent(root.left, x);
+        // if node found, then no need to look further
+        if(ans) {
+            return true;
+        }
+        // if node is not found in left, so using recursion on right subtree
+        boolean ans1 = isNodePresent(root.right, x);
+        return ans1;
+	}
+}
