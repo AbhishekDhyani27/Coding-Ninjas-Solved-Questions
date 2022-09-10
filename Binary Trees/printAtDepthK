@@ -1,0 +1,14 @@
+public static void printAtDepthK(BinaryTreeNode<Integer> root, int k) {
+        if(root == null) {
+            return;
+        }
+        // if k is 0 , only print the root node data and return
+        if(k == 0) {
+            System.out.println(root.data);
+            return;
+        }
+        // printing elements of the left side 
+        printAtDepthK(root.left, k-1);
+        // printing elements of the left side 
+        printAtDepthK(root.right, k-1);
+    }
