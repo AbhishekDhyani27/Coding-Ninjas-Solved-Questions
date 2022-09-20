@@ -1,0 +1,21 @@
+public static int height(BinaryTreeNode<Integer> root) {
+        if(root == null) {
+            return 0;
+        }
+        return Math.max(height(root.left),height(root.right)) + 1;
+    }
+
+    public static int diameter(BinaryTreeNode<Integer> root) {
+        if(root == null) {
+            return 0;
+        }
+
+        // returning maximum diameter from both the tree
+        int option1 = height(root.left) + height(root.right);
+        // returns maximum diameter from the left of the tree
+        int option2 = diameter(root.left);
+        // returns maximum diameter from the right of the tree
+        int option3 = diameter(root.right);
+
+        return Math.max(option1,Math.max(option2,option3));
+    }
