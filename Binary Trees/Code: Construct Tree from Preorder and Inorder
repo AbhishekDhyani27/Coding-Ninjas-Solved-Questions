@@ -52,13 +52,13 @@ public class Solution {
 
         int lInS = startIn; //left inorder start
         int lInE = rootIndex - 1; //left inorder end
-        int lPreS = startPre + 1; //left preorder start
+        int lPreS = startPre + 1; //left preorder start because 1st element is root so preStart which is 0+1 is the preS
         int lPreE = lInE - lInS + lPreS; //left preorder end
-        int rPreS = lPreE + 1; //right preorder start
+        int rPreS = lPreE + 1; //right preorder start as preorder right starts after next index from where left one ends
         int rPreE = endPre; //right preorder end
         int rInS = rootIndex + 1; //right inorder start
         int rInE = endIn; //right inorder end
-        BinaryTreeNode<Integer>  root = new BinaryTreeNode<Integer>(rootData);
+        BinaryTreeNode<Integer>  root = new BinaryTreeNode<Integer>(rootData); // creating new tree by initially giving root data
         root.left = buildTreeHelper(inOrder, lInS, lInE, preOrder, lPreS, lPreE);
         root.right = buildTreeHelper(inOrder, rInS, rInE, preOrder, rPreS, rPreE);
         return root;
