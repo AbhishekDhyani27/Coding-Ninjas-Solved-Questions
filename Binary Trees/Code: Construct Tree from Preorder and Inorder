@@ -41,6 +41,8 @@ public class Solution {
         // initializing root data as preOrder of 0 is root
         int rootData = preOrder[startPre];
         int rootIndex = -1;
+	
+	// finding index of the root in inOrder array
         for (int i = startIn; i <= endIn; i++) {
             if (inOrder[i] == rootData) {
                 rootIndex = i;
