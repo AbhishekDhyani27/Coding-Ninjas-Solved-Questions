@@ -1,0 +1,64 @@
+Code: Construct Tree from Preorder and Inorder
+
+For a given preorder and inorder traversal of a Binary Tree of type integer stored in an array/list, create the binary tree using the given two arrays/lists. 
+You just need to construct the tree and return the root.
+
+Note:
+Assume that the Binary Tree contains only unique elements. 
+
+Input Format:
+The first line of input contains an integer N denoting the size of the list/array. It can also be said that N is the total number of nodes the binary tree would have.
+The second line of input contains N integers, all separated by a single space. It represents the preorder-traversal of the binary tree.
+The third line of input contains N integers, all separated by a single space. It represents the inorder-traversal of the binary tree.
+
+Output Format:
+The given input tree will be printed in a level order fashion where each level will be printed on a new line. 
+Elements on every level will be printed in a linear fashion. A single space will separate them.
+
+Constraints:
+1 <= N <= 10^4
+Where N is the total number of nodes in the binary tree.
+Time Limit: 1 sec
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+public class Solution {
+
+	public static BinaryTreeNode<Integer> buildTree(int[] preOrder, int[] inOrder) {
+		int lengthIn = inOrder.length;
+        int lengthPre = preOrder.length;
+        if(lengthIn == 0 || lengthPre == 0 || lengthIn != lengthPre) {
+            return null;
+        }
+        return  buildTreeHelper( inOrder, 0, lengthIn-1, preOrder, 0, lengthPre-1);
+	}
+    
+     private static BinaryTreeNode<Integer> buildTreeHelper(int[] inOrder, int startIn, int endIn, int[] preOrder, int startPre, int endPre) {
+        if(startIn > endIn) {
+            return null;
+        }
+
+        // initializing root data as preOrder of 0 is root
+        int rootData = preOrder[startPre];
+        int rootIndex = -1;
+        for (int i = startIn; i <= endIn; i++) {
+            if (inOrder[i] == rootData) {
+                rootIndex = i;
+                break;
+            }
+        }
+
+        int lInS = startIn; //left inorder start
+        int lInE = rootIndex - 1; //left inorder end
+        int lPreS = startPre + 1; //left preorder start
+        int lPreE = lInE - lInS + lPreS; //left preorder end
+        int rPreS = lPreE + 1; //right preorder start
+        int rPreE = endPre; //right preorder end
+        int rInS = rootIndex + 1; //right inorder start
+        int rInE = endIn; //right inorder end
+        BinaryTreeNode<Integer>  root = new BinaryTreeNode<Integer>(rootData);
+        root.left = buildTreeHelper(inOrder, lInS, lInE, preOrder, lPreS, lPreE);
+        root.right = buildTreeHelper(inOrder, rInS, rInE, preOrder, rPreS, rPreE);
+        return root;
+    }
+}
