@@ -1,0 +1,49 @@
+Diameter Of Binary Tree
+
+For a given Binary of type integer, find and return the ‘Diameter’.
+
+Diameter of a Tree
+The diameter of a tree can be defined as the maximum distance between two leaf nodes.
+Here, the distance is measured in terms of the total number of nodes present along the path of the two leaf nodes, including both the leaves.
+
+Input Format:
+The first and the only line of input will contain the node data, all separated by a single space. 
+Since -1 is used as an indication whether the left or right node data exist for root, it will not be a part of the node data.
+
+Output Format:
+The only line of output prints an integer, representing the diameter of the tree.
+
+Note:
+You are not required to print anything explicitly. It has already been taken care of.
+
+Constraints:
+1 <= N <= 10^5
+Where N is the total number of nodes in the binary tree.
+Time Limit: 1 sec
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+public class Solution {
+
+	public static int diameterOfBinaryTree(BinaryTreeNode<Integer> root){
+		if (root == null) {
+            return 0;
+        }
+        return findHeight(root.left) + findHeight(root.right) + 1;
+	}
+    
+    public static int findHeight(BinaryTreeNode<Integer> root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftHeight = findHeight(root.left);
+        int rightHeight = findHeight(root.right);
+        
+        if(leftHeight > rightHeight) {
+            return leftHeight + 1;
+        }
+        else {
+            return rightHeight + 1;
+        }
+    }
+}
