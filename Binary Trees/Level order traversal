@@ -1,0 +1,54 @@
+Level order traversal
+
+For a given a Binary Tree of type integer, print it in a level order fashion where each level will be printed on a new line.
+Elements on every level will be printed in a linear fashion and a single space will separate them.
+
+Input Format:
+The first and the only line of input will contain the node data, all separated by a single space.
+Since -1 is used as an indication whether the left or right node data exist for root, it will not be a part of the node data.
+
+Output Format:
+The given input tree will be printed in a level order fashion where each level will be printed on a new line. 
+Elements on every level will be printed in a linear fashion. A single space will separate them.
+
+Constraints:
+1 <= N <= 10^5
+Where N is the total number of nodes in the binary tree.
+Time Limit: 1 sec
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.*;
+
+public class Solution {
+
+	public static void printLevelWise(BinaryTreeNode<Integer> root) {
+        if(root == null) {
+            return;
+        }
+        
+        Queue<BinaryTreeNode<Integer>> pendingNodes = new LinkedList<>();
+        pendingNodes.add(root);
+        pendingNodes.add(null);
+        while(!pendingNodes.isEmpty()) {
+            BinaryTreeNode<Integer> frontNode = pendingNodes.poll(); 
+            if (frontNode == null) {
+                System.out.println();
+                if (!pendingNodes.isEmpty()) {
+                    pendingNodes.add(null);
+                }
+            }
+            else {
+                System.out.print(frontNode.data + " ");
+                if (frontNode.left != null) {
+                    pendingNodes.add(frontNode.left);
+                }
+
+                if (frontNode.right != null) {
+                    pendingNodes.add(frontNode.right); 
+                         
+                }
+            }
+        }
+    }                        
+}
