@@ -1,0 +1,53 @@
+Find path in BST
+
+Given a BST and an integer k. Find and return the path from the node with data k and root (if a node with data k is present in given BST) in a list. 
+Return empty list otherwise.
+
+Note: Assume that BST contains all unique elements.
+
+Input Format :
+The first line of input contains data of the nodes of the tree in level order form. The data of the nodes of the tree is separated by space. 
+If any node does not have left or right child, take -1 in its place.
+Since -1 is used as an indication whether the left or right nodes exist, therefore, it will not be a part of the data of any node.   
+The following line of input contains an integer, that denotes the value of k.
+
+Output Format :
+The first line and only line of output prints the data of the nodes in the path from node k to root. The data of the nodes is separated by single space.
+
+Constraints:
+Time Limit: 1 second   
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+public static ArrayList<Integer> getPath(BinaryTreeNode<Integer> root, int data){
+        if(root == null) {
+            return null;
+        }
+
+        // if data is found at root then create a new arraylist, add data and then return output
+        if(root.data == data) {
+            ArrayList<Integer> Output = new ArrayList<>();
+            Output.add(root.data);
+            return Output;
+        }
+
+        // using recursion on left subtree
+        ArrayList<Integer> leftOutput = getPath(root.left, data);
+        // if we do not get null then add root data and return it
+        if(leftOutput != null) {
+            leftOutput.add(root.data);
+            return leftOutput;
+        }
+
+        // using recursion on right subtree
+        ArrayList<Integer> rightOutput = getPath(root.right, data);
+        // if we do not get null then add root data and return it
+        if(rightOutput != null) {
+            rightOutput.add(root.data);
+            return rightOutput;
+        }
+        // if we get null from both right and left subtree then return null
+        else {
+            return null;
+        }
+    }
