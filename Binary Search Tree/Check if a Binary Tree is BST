@@ -33,6 +33,6 @@ public class Solution {
         }
 
         return isBST_util(root.left,min,root.data-1) &&
-                isBST_util(root.right, root.data+1,max);
+                isBST_util(root.right, root.data,max);
     }
 }
