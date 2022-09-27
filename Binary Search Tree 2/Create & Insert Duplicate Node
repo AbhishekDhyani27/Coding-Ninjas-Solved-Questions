@@ -1,0 +1,41 @@
+Create & Insert Duplicate Node
+
+For a given a Binary Tree of type integer, duplicate every node of the tree and attach it to the left of itself.
+The root will remain the same. So you just need to insert nodes in the given Binary Tree.
+
+Input format :
+The first and the only line of input will contain the node data, all separated by a single space. 
+Since -1 is used as an indication whether the left or right node data exist for root, it will not be a part of the node data.
+
+Output Format :
+The updated tree will be printed in a level order fashion where each level will be printed on a new line. 
+Elements on every level will be printed in a linear fashion. A single space will separate them.
+
+Note:
+You are not required to print anything explicitly. It has already been taken care of.
+Just implement the function to achieve the desired structure of the tree.
+
+Constraints :
+1 <= N <= 10^5
+Where N is the total number of nodes in the binary tree.
+Time Limit: 1 sec
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+public class Solution {
+
+	public static void insertDuplicateNode(BinaryTreeNode<Integer> root) {
+        if(root == null) {
+            return;
+        }
+        // passing root data to the new treeNode
+        BinaryTreeNode<Integer> newNode = new BinaryTreeNode<>(root.data);
+        // assigning left of root to the temp variable so, we could not loose it
+        BinaryTreeNode<Integer> temp = root.left;
+        // root of left is newNode = duplicate data
+        root.left = newNode;
+        newNode.left = temp;
+        insertDuplicateNode(temp);
+        insertDuplicateNode(root.right);
+	}
+}
