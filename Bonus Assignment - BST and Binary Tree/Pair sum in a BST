@@ -1,0 +1,85 @@
+Pair sum in a BST
+
+Given a binary search tree and an integer S, find pair of nodes in the BST which sum to S. You can use extra space of the order of O(log n).
+
+Note:
+1. Assume BST contains all unique elements.
+2. In a pair, print the smaller element first.
+
+Input Format :
+The first line of input contains data of the nodes of the tree in level order form. 
+The data of the nodes of the tree is separated by space. If any node does not have left or right child, take -1 in its place. 
+Since -1 is used as an indication whether the left or right nodes exist, therefore, it will not be a part of the data of any node.   
+The following line of input contains an integer, that denotes the value of S.
+
+Output format:
+You have to print each pair in a different line (pair elements separated by space). The order of different pairs, to be printed, does not matter.
+
+Constraints:
+Time Limit: 1 second   
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Solution {
+	
+	public static void printNodesSumToS(BinaryTreeNode<Integer> root, int s) {
+		if (root==null) {
+            return;
+        }
+        else {
+            // converting tree to an array by creating an ArrayList
+            ArrayList<Integer> array = convertToArray(root);
+            Collections.sort(array);
+            printPairSum(array, s);
+        }
+	}
+    
+    private static ArrayList<Integer> convertToArray(BinaryTreeNode<Integer> root) {
+        if (root==null) {
+            return new ArrayList<>();
+        }
+
+        ArrayList<Integer> currArr = new ArrayList<>();
+        ArrayList<Integer> leftArr = convertToArray(root.left);
+        // if leftArr is not empty add elements to currArr
+        if (!leftArr.isEmpty()) {
+            currArr.addAll(leftArr);
+        }
+        currArr.add(root.data);
+        ArrayList<Integer> rightArr = convertToArray(root.right);
+        // if rightArr is not empty add elements to currArr
+        if (!rightArr.isEmpty()) {
+            currArr.addAll(rightArr);
+        }
+        return currArr;
+    }
+
+    private static void printPairSum(ArrayList<Integer> array, int s) {
+        int i = 0;
+        int j = array.size()-1;
+
+        while(i < j) {
+            // value at array[i]
+            int val1 = array.get(i);
+            // value at array[j]
+            int val2 = array.get(j);
+            // if value is greater than sum then decrement j
+            if (val1+val2 > s) {
+                j = j-1;
+            }
+            // if value is lesser than sum then increment i
+            else if(val1+val2 < s) {
+                i = i+1;
+            }
+            // if value is equal to sum then increment i and decrement j 
+            else {
+                System.out.println(val1+" "+val2);
+                i = i+1;
+                j = j-1;
+            }
+        }
+    }
+}
