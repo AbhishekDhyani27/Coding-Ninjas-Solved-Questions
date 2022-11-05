@@ -1,0 +1,50 @@
+import java.util.HashMap;
+import java.util.Set;
+
+public class MapUse {
+    public static void main(String[] args) {
+        HashMap<String,Integer> map = new HashMap<>();
+
+        // insertion
+        map.put("abc",1);
+        map.put("df",2);
+        map.put("abc1",10);
+        map.put("df1",2);
+
+        // for getting size
+        System.out.println("size: "+map.size());
+
+        // if I want to check whether our map contains value or not
+        if(map.containsKey("abc")) {
+            System.out.println("has abc");
+        }
+        if(map.containsKey("abc1")) {
+            System.out.println("has abc1");
+        }
+
+        // getting value
+//        int v = map.get("abc1");
+//        System.out.println(v);
+        //Or we can do this so that we will not get nullPointer exception
+        int v = 0;
+        if(map.containsKey("abc1")) {
+            v = map.get("abc1");
+        }
+        System.out.println(v);
+
+        // removing value
+        int s = map.remove("abc");
+        System.out.println(s);
+
+        // for checking value
+        if(map.containsValue(2)){  // Time Complexity is of O(n)
+            System.out.println("has value");
+        }
+
+        // iterate over map
+        Set<String> keys = map.keySet();
+        for(String str: keys) {
+            System.out.println(str);
+        }
+    }
+}
