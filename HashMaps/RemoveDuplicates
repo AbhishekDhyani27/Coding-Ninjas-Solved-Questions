@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class RemoveDuplicates {
+
+    // Time Complexity is of O(n)
+    public static ArrayList<Integer> removeDuplicates(int[] a) {
+        // creating an ArrayList
+        ArrayList<Integer> output = new ArrayList<>();
+        // creating a Hashmap naming seen
+        HashMap<Integer,Boolean> seen = new HashMap<>();
+
+        for(int i = 0; i < a.length; i++) {
+            // if hashmap contains a[i] then continue
+            if(seen.containsKey(a[i])) {
+                continue;
+            }
+            // else add element to the ArrayList
+            output.add(a[i]);
+            // putting that element value = true
+            seen.put(a[i],true);
+        }
+        return output;
+    }
+    
+    public static void main(String[] args) {
+        int[] a = {1,2,3,5,6,1000,6,3,2,1};
+        ArrayList<Integer> output = removeDuplicates(a);
+        for(int i = 0; i < output.size(); i++) {
+            System.out.println(output.get(i));
+        }
+    }
+}
