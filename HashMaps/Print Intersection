@@ -1,0 +1,57 @@
+Print Intersection
+
+You have been given two integer arrays/lists (ARR1 and ARR2) of size N and M, respectively.
+You need to print their intersection; An intersection for this problem can be defined when both the arrays/lists contain
+a particular value or to put it in other words, when there is a common value that exists in both the arrays/lists.
+
+Note :
+Input arrays/lists can contain duplicate elements.
+The intersection elements printed would be in the order they appear in the second array/list (ARR2).
+
+Input format :
+The first line of input contains an integer 'N' representing the size of the first array/list.
+The second line contains 'N' single space separated integers representing the elements of the first the array/list.
+The third line contains an integer 'M' representing the size of the second array/list.
+The fourth line contains 'M' single space separated integers representing the elements of the second array/list.
+
+Output format :
+Print the intersection elements. Each element is printed in a separate line.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.*;
+
+public class Solution {
+
+	public static void printIntersection(int[] arr1,int[] arr2){
+		HashMap<Integer, Integer> map = new HashMap<>();
+
+        // traversing 1st array
+        for (int i = 0; i < arr1.length; i++) {
+            // if map contains arr1[i] then
+            if (map.containsKey(arr1[i])) {
+                // getting frequency of the key
+                int value = map.get(arr1[i]);
+                // incrementing it if it is already present
+                map.put(arr1[i], value + 1);
+            } else {
+                // if not found then put its frequency as 1
+                map.put(arr1[i], 1);
+            }
+        }
+
+        for (int i = 0; i < arr2.length; i++) {
+            // if map contains arr2[i] then
+            if (map.containsKey(arr2[i])) {
+                // getting frequency of the key
+                int frequency = map.get(arr2[i]);
+                // if frequency of the key is greater than 0 than print it
+                // and also decrease the frequency by 1
+                if(frequency > 0) {
+                    System.out.println(arr2[i]+" ");
+                    map.put(arr2[i],frequency-1);
+                }
+            }
+        }
+	}
+}
