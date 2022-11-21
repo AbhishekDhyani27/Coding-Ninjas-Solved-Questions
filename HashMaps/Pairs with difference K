@@ -1,0 +1,53 @@
+Pairs with difference K
+
+You are given with an array of integers and an integer K. You have to find and print the count of all such pairs which have difference K.
+Note: Take absolute difference between the elements of the array.
+
+Input Format:
+The first line of input contains an integer, that denotes the value of the size of the array. Let us denote it with the symbol n.
+The following line contains n space separated integers, that denote the value of the elements of the array.
+The following line contains an integer, that denotes the value of K.
+
+Output format :
+The first and only line of output contains count of all such pairs which have an absolute difference of K. 
+
+Constraints :
+0 <= n <= 10^4
+Time Limit: 1 sec
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import  java.util.HashMap;
+
+public class Solution {
+
+	public static int getPairsWithDifferenceK(int arr[], int k) {
+		HashMap<Integer,Integer> map = new HashMap<>();
+
+        //initially pair count is 0
+        int pairCount = 0;
+
+        for(int i=0 ; i<arr.length; i++) {
+            int p1 = arr[i] + k;
+            boolean flag = false;
+            if(arr[i] == p1) {
+                flag = true;
+            }
+
+            if(map.containsKey(p1)){
+                pairCount += map.get(p1);
+            }
+            int p2 = arr[i] - k;
+            if(map.containsKey(p2) && !flag){
+                pairCount += map.get(p2);
+            }
+            if(map.containsKey(arr[i])){
+                map.put(arr[i], map.get(arr[i]) + 1);
+            }
+            else{
+                map.put(arr[i], 1);
+            }
+        }
+        return pairCount;
+	}
+}
