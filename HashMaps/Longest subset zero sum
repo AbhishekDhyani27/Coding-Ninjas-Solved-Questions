@@ -1,0 +1,48 @@
+Longest subset zero sum
+
+Given an array consisting of positive and negative integers, find the length of the longest subarray whose sum is zero.
+
+Input Format:
+The first line of input contains an integer, that denotes the value of the size of the array. Let us denote it with the symbol N.
+The following line contains N space separated integers, that denote the value of the elements of the array.
+
+Output Format:
+The first and only line of output contains length of the longest subarray whose sum is zero.
+
+Constraints:
+0 <= N <= 10^8
+Time Limit: 1 sec
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import  java.util.*;
+
+public class Solution {
+
+	public static int lengthOfLongestSubsetWithZeroSum(int arr[]) {
+		HashMap<Integer,Integer> map = new HashMap<>();
+
+        int maxLength = 0;
+        int sum = 0;
+        // initially at index -1 the sum is 0
+        map.put(sum,-1);
+
+        for(int i=0; i< arr.length; i++) {
+            sum += arr[i];
+
+            // if map doesn't contain the sum
+            // put the sum at that specified index
+            if(map.containsKey(sum) == false) {  //or !map.containsKey(sum)
+                map.put(sum,i);
+            }
+            else {
+                // calculating length of the subArray
+                int length = i - map.get(sum);
+                if(length > maxLength) {
+                    maxLength = length;
+                }
+            }
+        }
+        return maxLength;
+	}
+}
