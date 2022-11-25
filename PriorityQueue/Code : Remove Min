@@ -1,0 +1,51 @@
+Code : Remove Min
+
+Implement the function RemoveMin for the min priority queue class.
+For a minimum priority queue, write the function for removing the minimum element present.
+Remove and return the minimum element.
+Note : main function is given for your reference which we are using internally to test the code.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
+
+int removeMin() throws PriorityQueueException {
+		// Complete this function
+		// Throw the exception PriorityQueueException if queue is empty
+		if(isEmpty()){
+            // Throw an exception
+            throw new PriorityQueueException();
+        }
+        // storing value of 0th index in the temp
+        int temp = heap.get(0);
+        // setting last index as 0th index of the heap
+        heap.set(0, heap.get(heap.size() - 1));
+        // removing last element from the heap
+        heap.remove(heap.size() - 1);
+
+        int parentIndex = 0;
+        int minIndex = parentIndex;
+        int leftChildIndex = 1;
+        int rightChildIndex = 2;
+
+        while(leftChildIndex < heap.size()) {
+            if(heap.get(leftChildIndex) < heap.get(minIndex)){
+                minIndex = leftChildIndex;
+            }
+
+            if(rightChildIndex < heap.size() && heap.get(rightChildIndex) < heap.get(minIndex)) {
+                minIndex = rightChildIndex;
+            }
+
+            if(minIndex == parentIndex) {
+                break;
+            }
+            else {
+                int temp1 = heap.get(parentIndex);
+                heap.set(parentIndex, heap.get(minIndex));
+                heap.set(minIndex, temp1);
+                parentIndex = minIndex;
+                leftChildIndex = 2 * parentIndex + 1;
+                rightChildIndex = 2 * parentIndex + 2;
+            }
+        }
+        return temp;
+	}
