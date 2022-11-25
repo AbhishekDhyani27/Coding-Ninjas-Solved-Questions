@@ -8,13 +8,11 @@ Note : main function is given for your reference which we are using internally t
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
 
 int removeMin() throws PriorityQueueException {
-		// Complete this function
-		// Throw the exception PriorityQueueException if queue is empty
-		if(isEmpty()){
+	if(isEmpty()) {
             // Throw an exception
             throw new PriorityQueueException();
         }
-        // storing value of 0th index in the temp
+        // storing value of 0th index in the temp because we have to return it
         int temp = heap.get(0);
         // setting last index as 0th index of the heap
         heap.set(0, heap.get(heap.size() - 1));
