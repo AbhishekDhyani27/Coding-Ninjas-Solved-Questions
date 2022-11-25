@@ -30,7 +30,8 @@ int removeMin() throws PriorityQueueException {
             if(heap.get(leftChildIndex) < heap.get(minIndex)){
                 minIndex = leftChildIndex;
             }
-
+	    
+	    // until rightChildIndex is less than our range we will continue doing this
             if(rightChildIndex < heap.size() && heap.get(rightChildIndex) < heap.get(minIndex)) {
                 minIndex = rightChildIndex;
             }
