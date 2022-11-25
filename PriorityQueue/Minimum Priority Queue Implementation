@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+
+public class Priority_Queue {
+
+    private ArrayList<Integer> heap;
+
+    public Priority_Queue() {
+        heap = new ArrayList<>();
+    }
+
+    boolean isEmpty() {
+        return heap.size() == 0;
+    }
+
+    int size() {
+        return heap.size();
+    }
+
+    int getMin() throws PriorityQueue_Exception {
+        if(heap.isEmpty()) {
+            // then throw an Exception
+            throw new PriorityQueue_Exception();
+        }
+        return heap.get(0);
+    }
+
+    void insert(int element) {
+        heap.add(element);
+        // last element added is the child now
+        int childIndex = heap.size() - 1;
+        int parentIndex = (childIndex - 1) / 2;
+
+        while(childIndex > 0) {
+            if(heap.get(childIndex) < heap.get(parentIndex)) {
+                int temp = heap.get(childIndex);
+                // storing parent at childIndex
+                heap.set(childIndex, heap.get(parentIndex));
+                // storing child at parentIndex
+                heap.set(parentIndex, temp);
+
+                // after this new childIndex will be parentIndex
+                childIndex = parentIndex;
+                parentIndex = (childIndex - 1) / 2;
+            }
+            else {
+                return;
+            }
+        }
+    }
+}
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+public class PriorityQueue_Exception extends Exception {
+
+}
