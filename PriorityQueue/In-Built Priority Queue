@@ -1,0 +1,19 @@
+ public static void main(String[] args) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        int[] arr = {9,1,0,4,7,3};
+        for(int i = 0; i<arr.length; i++) {
+            // add() function will add elements in the pq
+            pq.add(arr[i]);
+        }
+
+        // element() function will give minimum element in the pq
+        System.out.println(pq.element());
+
+        // poll() function will remove minimum element from th pq
+        System.out.println(pq.poll());
+
+        while(!pq.isEmpty()) {
+            // remove() function will remove elements from the pq in sorted order
+            System.out.print(pq.remove()+" ");
+        }
+}
