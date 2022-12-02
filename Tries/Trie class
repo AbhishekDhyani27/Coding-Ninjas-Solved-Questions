@@ -1,0 +1,129 @@
+package Tries;
+
+class TrieNode {
+    char data;
+    boolean isTerminating;
+    TrieNode[] children;
+    int childCount;
+
+    public TrieNode(char data) {
+        this.data = data;
+        isTerminating = false;
+        children = new TrieNode[26];
+        childCount = 0;
+    }
+}
+
+public class Trie {
+    // creating root Node
+    private TrieNode root;
+    private int numWords;
+
+    public Trie() {
+        root = new TrieNode('\0');
+    }
+
+
+    public boolean search(String word) {
+        return search(root,word);
+    }
+
+    private boolean search(TrieNode root, String word) {
+        // if we reached to the last letter of our word
+        // check if that last letter is terminating
+        //if it is terminating return true else return false
+        if (word.length() == 0) {
+            return root.isTerminating;
+        }
+
+        // finding index of first letter of the word
+        int childIndex = word.charAt(0) - 'a';
+        TrieNode child = root.children[childIndex];
+
+        // if child index has nothing/Null
+        // it means it is not present
+        if(child == null) {
+            return false;
+        }
+        else {
+            return search(child,word.substring(1));
+        }
+    }
+
+    public void remove(String word) {
+        remove(root,word);
+    }
+
+    private void remove(TrieNode root, String word) {
+        // if we reached to the last letter of our word
+        // check if that last letter is terminating
+        //if it is terminating than make it false and return
+        if (word.length() == 0) {
+            root.isTerminating = false;
+            return;
+        }
+
+        // finding index of first letter of the word
+        int childIndex = word.charAt(0) - 'a';
+        TrieNode child = root.children[childIndex];
+
+        if(child == null) {
+            return;
+        }
+        else {
+            remove(child,word.substring(1));
+
+            if(!child.isTerminating && child.childCount == 0) {
+                root.children[childIndex] = null;
+                child = null;
+                root.childCount--;
+            }
+
+
+            // we can remove child node only if it is non-terminating
+            // and its number of children are 0
+//            if(!child.isTerminating) {
+//                int numChild = 0;
+//                for(int i=0; i<26; i++) {
+//                    // if children's are not null
+//                    if(child.children[i] != null) {
+//                        numChild++;
+//                    }
+//                }
+//                if(numChild == 0) {
+//                    // then we can delete child
+//                    root.children[childIndex] = null;
+//                    child = null;
+//                    root.childCount--;
+//                }
+//            }
+        }
+    }
+
+    private void add(TrieNode root,String word) {
+
+        if (word.length() == 0) {
+            root.isTerminating = true;
+            return;
+        }
+        // Let us taking small letters
+        // finding index of first letter of the word
+        int childIndex = word.charAt(0) - 'a';
+        TrieNode child = root.children[childIndex];
+
+        // if child index has nothing/Null
+        if(child == null) {
+            child = new TrieNode(word.charAt(0));
+            // adding new node to the root
+            root.children[childIndex] = child;
+            root.childCount++;
+
+        }
+
+        add(child,word.substring(1));
+    }
+
+    public void add(String word) {
+        add(root, word);
+    }
+}
