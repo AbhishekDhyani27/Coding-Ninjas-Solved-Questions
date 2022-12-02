@@ -1,0 +1,34 @@
+Code: Search word in Trie
+
+Implement the function SearchWord for the Trie class.
+For a Trie, write the function for searching a word.
+Return true if the word is found successfully, otherwise return false.
+Note : main function is given for your reference which we are using internally to test the code.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+private boolean search(TrieNode root, String word) {
+        // if we reached to the last letter of our word
+        // check if that last letter is terminating
+        //if it is terminating return true else return false
+        if (word.length() == 0) {
+            return root.isTerminating;
+        }
+
+        // finding index of first letter of the word
+        int childIndex = word.charAt(0) - 'a';
+        TrieNode child = root.children[childIndex];
+
+        // if child index has nothing/Null
+        // it means it is not present
+        if(child == null) {
+            return false;
+        }
+        else {
+            return search(child,word.substring(1));
+        }
+    }
+
+	public boolean search(String word){
+		return search(root,word);
+	}
