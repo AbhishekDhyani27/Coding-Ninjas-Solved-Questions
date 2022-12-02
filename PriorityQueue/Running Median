@@ -1,0 +1,67 @@
+Running Median
+
+You are given a stream of 'N' integers. For every 'i-th' integer added to the running list of integers, print the resulting median.
+Print only the integer part of the median.
+
+Input Format :
+The first line of input contains an integer 'N', denoting the number of integers in the stream.
+The second line of input contains 'N' integers separated by a single space.
+
+Output Format :
+Print the running median for every integer added to the running list in one line (space-separated).
+
+Input Constraints :
+0 <= N <= 10 ^ 5
+1 <= ARR[i] <= 10 ^ 5
+Time Limit: 1 sec
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.*;
+
+public class Solution {
+	public static void findMedian(int arr[])  {
+		PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        if (arr.length == 0) {
+            return;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (maxHeap.isEmpty()) {
+                maxHeap.add(arr[i]);
+            } 
+            else if (maxHeap.peek() > arr[i]) {
+                maxHeap.add(arr[i]);
+                if (maxHeap.size() - minHeap.size() > 1) {
+                    int temp = maxHeap.remove();
+                    minHeap.add(temp);
+                }
+            } 
+            else {
+                minHeap.add(arr[i]);
+                if (minHeap.size() - maxHeap.size() > 1) {
+                    int temp = minHeap.remove();
+                    maxHeap.add(temp);
+                }
+            }
+
+            if (maxHeap.size() > minHeap.size()) {
+                System.out.print(maxHeap.peek() + " ");
+            }
+            else if (maxHeap.size() < minHeap.size()) {
+                System.out.print(minHeap.peek() + " ");
+            }
+            else {
+                int a = maxHeap.peek();
+                int b = minHeap.peek();
+                int ans = (a + b) / 2;
+                System.out.print(ans + " ");
+
+            }
+        }
+    }
+}
