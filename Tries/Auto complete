@@ -1,0 +1,86 @@
+Auto complete
+
+Given n number of words and an incomplete word w. You need to auto-complete that word w.
+That means, find and print all the possible words which can be formed using the incomplete word w.
+Note : Order of words does not matter.
+
+Input Format :
+The first line of input contains an integer, that denotes the value of n.
+The following line contains n space separated words.
+The following line contains the word w, that has to be auto-completed.
+
+Output Format :
+Print all possible words in separate lines.
+
+Constraints:
+Time Limit: 1 sec
+
+
+Sample Input 1 :
+7
+do dont no not note notes den
+no
+
+Sample Output 2 :
+no
+not
+note
+notes
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+public void autoComplete(ArrayList<String> input, String word) {
+		int i=0; 
+		// adding all the words to the Trie
+        while(i<input.size()){
+            String a=input.get(i);
+            add(root,a); 
+            i++;
+         }  
+		 // if there is nothing then return
+        if(root == null || root.childCount == 0) { 
+            return;
+        }
+		// finding a word in Trie
+       TrieNode a=findword(root,word);
+        String output = ""; 
+        allwords(a,word,output); 
+    }
+
+    public TrieNode findword(TrieNode root, String word) { 
+		// if word we searched is of length 0 then return
+        if(word.length() == 0){
+            return root;
+        }
+		// find index of the first word we have searched
+        int childIndex = word.charAt(0) - 'a';
+		// creating its childnode
+        TrieNode child = root.children[childIndex];
+        if(child == null){
+            return null; 
+        }
+        return findword(child, word.substring(1));
+    } 
+
+	public void allwords(TrieNode root,String word,String output){    
+		if(root == null) { 
+            return;
+        }
+
+        if(root.childCount == 0 && output.length() > 0) { 
+            System.out.println(word + output); 
+            return; 
+        }
+
+		// if a letter is terminating then print it
+        if(root.isTerminating == true) {
+            System.out.println(word + output);
+        }
+
+        for(int i = 0; i < root.children.length; i++) {
+            if(root.children[i] != null) {
+                String ans = output + root.children[i].data; 
+                allwords(root.children[i],word,ans);
+            }
+       }
+    }
