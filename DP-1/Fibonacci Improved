@@ -21,7 +21,7 @@ public class Fibonacci {
     }
     
     
-    // Memoization
+    // Memoization - TopDown Approach
     // Time Complexity is of Order O(n)
     private static int fibD(int n, int[] storage) {
         // base condition
@@ -39,7 +39,7 @@ public class Fibonacci {
         return storage[n];
     }
     
-    // fibonacci iterative DP approach
+    // fibonacci iterative DP - BottomUp Approach
     public static int fibDP(int n) {
         int[] storage = new int[n+1];
         storage[0] = 0;
