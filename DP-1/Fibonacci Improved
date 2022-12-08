@@ -1,0 +1,46 @@
+public class Fibonacci {
+
+    // Time Complexity is of Order O(2^n)
+    public static int fib(int n) {
+        if(n==0 || n==1) {
+            return n;
+        }
+        return fib(n-1) + fib(n-2);
+    }
+
+
+    public static int fibD(int n) {
+        // creating an array for storing values
+        int[] storage = new int[n+1];
+
+        // initially all the indexes are -1
+        for(int i=0; i<storage.length; i++) {
+            storage[i] = -1;
+        }
+        return fibD(n,storage);
+    }
+    
+    
+    // Time Complexity is of Order O(n)
+    private static int fibD(int n, int[] storage) {
+        // base condition
+        if(n==0 || n==1) {
+            storage[n] = n;
+            return storage[n];
+        }
+
+        // if no -1 is left it means we have stored all the elements so,then return
+        if(storage[n] != -1) {
+            return storage[n];
+        }
+
+        storage[n] = fibD(n-1,storage) + fibD(n-2,storage);
+        return storage[n];
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        System.out.println(fib(n));
+        System.out.println(fibD(n));
+    }
+}
