@@ -21,6 +21,7 @@ public class Fibonacci {
     }
     
     
+    // Memoization
     // Time Complexity is of Order O(n)
     private static int fibD(int n, int[] storage) {
         // base condition
@@ -37,10 +38,23 @@ public class Fibonacci {
         storage[n] = fibD(n-1,storage) + fibD(n-2,storage);
         return storage[n];
     }
+    
+    // fibonacci iterative DP approach
+    public static int fibDP(int n) {
+        int[] storage = new int[n+1];
+        storage[0] = 0;
+        storage[1] = 1;
+
+        for(int i=2; i<=n; i++) {
+            storage[i]= storage[i-1] + storage[i-2];
+        }
+        return storage[n];
+    }
 
     public static void main(String[] args) {
-        int n = 5;
+        int n = 44;
         System.out.println(fib(n));
         System.out.println(fibD(n));
+        System.out.println(fibDP(n));
     }
 }
