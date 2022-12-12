@@ -32,36 +32,23 @@ Sample Output 1 :
 
 public class Solution {
 	public static int editDistance(String s1, String s2){
+	if(s1.length() == 0){
+			return s1.length();
+		}
+		if(s2.length() == 0){
+			return s2.length();
+		}
 		
-        int m = s1.length();
-        int n = s2.length();
-
-        int[][] dp = new int[m+1][n+1];
-
-        // filling first column
-        for(int i=0; i<=m; i++) {
-            dp[i][0] = i;
-        }
-        // filling first row
-        for(int j=0; j<=n; j++) {
-            dp[0][j] = j;
-        }
-
-        //now filling rest of the cells
-        for(int i=1; i<=m; i++) {
-            for(int j=1; j<=n; j++) {
-                // if characters are matching
-                // then store the diagonal value
-                if(s1.charAt(i-1) == s2.charAt(j-1)) {
-                    dp[i][j] = dp[i-1][j-1];
-                }
-                else {
-                    // getting minimum element from diagonal,above index and left index
-                    dp[i][j] = 1 + Math.min(Math.min(dp[i][j-1],dp[i-1][j]),dp[i-1][j-1]);
-                }
-            }
-        }
-
-        return dp[m][n];
+		if(s1.charAt(0) == s2.charAt(0)){
+			return editDistance(s1.substring(1), s2.substring(1));
+		}
+		else{
+			// insert
+			int op1 = editDistance(s1, s2.substring(1));
+			// delete 
+			int op2 = editDistance(s1.substring(1), s2);
+			//substitute
+			int op3 = editDistance(s1.substring(1), s2.substring(1));
+			return 1 + Math.min(op1, Math.min(op2, op3));   
 	}
 }
