@@ -1,0 +1,72 @@
+Code: 0 1 Knapsack(RECURSIVE)
+
+A thief robbing a store can carry a maximal weight of W into his knapsack.
+There are N items, and i-th item weigh 'Wi' and the value being 'Vi.' What would be the maximum value V, that the thief can steal?
+
+Input Format :
+The first line of the input contains an integer value N, which denotes the total number of items.
+The second line of input contains the N number of weights separated by a single space.
+The third line of input contains the N number of values separated by a single space.
+The fourth line of the input contains an integer value W, which denotes the maximum weight the thief can steal.
+
+Output Format :
+Print the maximum value of V that the thief can steal.
+
+Constraints :
+1 <= N <= 20
+1<= Wi <= 100
+1 <= Vi <= 100
+Time Limit: 1 sec
+
+
+Sample Input 1 :
+4
+1 2 4 5
+5 4 8 6
+5
+Sample Output 1 :
+13
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+public class Solution {
+
+	public static int knapsack(int[] weights, int[] values, int n, int maxWeight) {
+		return knapsacks(weights,values,n-1,maxWeight);
+	}
+
+private static int knapsacks(int[] weights, int[] values, int index, int maxWeight) {
+
+        // Base Case
+        //travelling from Right to left
+        // if only 1item to steal, then compare it with knapsack Maximum capacity
+        if(index == 0) {
+            //if weight at 0th index is less than Maximum Weight then return its Value
+            if(weights[0] <= maxWeight) {
+                return values[0];
+            }
+            // else return 0
+            else {
+                return 0;
+            }
+        }
+
+        // initially no element is added
+        int include = 0;
+
+        // if weight of current index is less than max weight
+        if(weights[index] <= maxWeight) {
+            // then include it and decrease then index and decrease Maximum weight
+            // as some value is occupied by current value weight
+            include = values[index] + knapsacks(weights, values, index-1, maxWeight-weights[index]);
+        }
+
+        // while excluding we add nothing and decrease the index for next iteration
+        // and maxWeight remains the same
+        int exclude = 0 + knapsacks(weights, values, index-1, maxWeight);
+
+        // we have to return the maximum answer
+        return Math.max(include,exclude);
+    }
+}
