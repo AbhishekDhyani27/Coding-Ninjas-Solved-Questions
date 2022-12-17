@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Graph {
+
+    public static void printHelper(int[][] edges, int firstVertex, boolean[] visited) {
+        System.out.println(firstVertex);
+
+        // the moment we print an element then mark it as a true,
+        // and we do not have to traverse it again
+        visited[firstVertex] = true;
+
+        int n = edges.length;
+        for(int i=0; i<n; i++) {
+            // if there is an edge between 2 vertices
+            // and (i) should not be visited
+            if(edges[firstVertex][i] == 1 && !visited[i]) {
+                printHelper(edges, i, visited);
+            }
+        }
+    }
+
+    public static void print(int[][] edges) {
+        boolean[] visited = new boolean[edges.length];
+        for(int i=0; i<edges.length; i++) {
+            if(!visited[i]) {
+                printHelper(edges, i, visited);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the no. of vertices: ");
+        int n = sc.nextInt();
+        System.out.println("Enter the no. of edges: ");
+        int e = sc.nextInt();
+        int[][] edges = new int[n][n];
+        for(int i=0; i<e; i++) {
+            int firstVertex = sc.nextInt();
+            int secondVertex = sc.nextInt();
+            edges[firstVertex][secondVertex] = 1;
+            edges[secondVertex][firstVertex] = 1;
+        }
+        print(edges);
+    }
+}
