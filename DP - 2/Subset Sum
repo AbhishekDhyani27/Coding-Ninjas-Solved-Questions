@@ -1,0 +1,59 @@
+Subset Sum
+
+You are given a set of N integers. You have to return true if there exists a subset that sum up to K, otherwise return false.
+
+Input Format:
+The first line of the test case contains an integer 'N' representing the total elements in the set.
+The second line of the input contains N integers separated by a single space.    
+The third line of the input contains a single integer, denoting the value of K.
+
+Output Format:
+Output Yes if there exists a subset whose sum is k, else output No.
+
+Constraints :
+1 <= N <= 10^3
+1 <= a[i] <= 10^3, where a[i] denotes an element of the set 
+1 <= K <= 10^3
+Time Limit: 1 sec
+
+
+Sample Input 1 :
+4
+4 3 5 2
+13
+Sample Output 1 :
+No
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+public class Solution{
+    static boolean isSubsetPresent(int[] arr, int n, int sum) {
+        // `T[i][j]` stores true if subset with sum `j` can be attained
+        // using items up to first `i` items
+        boolean[][] T = new boolean[n + 1][sum + 1];
+
+        // if the sum is zero
+        for (int i = 0; i <= n; i++) {
+            T[i][0] = true;
+        }
+
+        // do for i'th item
+        for (int i = 1; i <= n; i++) {
+            // consider all sum from 1 to sum
+            for (int j = 1; j <= sum; j++) {
+                // don't include the ith element if `j-A[i-1]` is negative
+                if (arr[i - 1] > j) {
+                    T[i][j] = T[i - 1][j];
+                }
+                else {
+                    // find the subset with sum `j` by excluding or including
+                    // the i'th item
+                    T[i][j] = T[i - 1][j] || T[i - 1][j - arr[i - 1]];
+                }
+            }
+        }
+
+        // return maximum value
+        return T[n][sum];
+    }
+}
