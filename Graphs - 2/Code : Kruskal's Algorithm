@@ -1,0 +1,130 @@
+Code : Kruskal's Algorithm
+
+Given an undirected, connected and weighted graph G(V, E) with V number of vertices (which are numbered from 0 to V-1) and E number of edges.
+Find and print the Minimum Spanning Tree (MST) using Kruskal's algorithm.
+For printing MST follow the steps -
+1. In one line, print an edge which is part of MST in the format - v1 v2 w
+where, v1 and v2 are the vertices of the edge which is included in MST and whose weight is w.
+And v1  <= v2 i.e. print the smaller vertex first while printing an edge.
+2. Print V-1 edges in above format in different lines.
+Note : Order of different edges doesn't matter.
+
+Input Format :
+Line 1: Two Integers V and E (separated by space)
+Next E lines : Three integers ei, ej and wi, denoting that there exists an edge between vertex ei and vertex ej with weight wi (separated by space)
+
+Output Format :
+Print the MST, as described in the task.
+
+Constraints :
+2 <= V, E <= 10^5
+Time Limit: 1 sec
+
+
+Sample Input 1 :
+4 4
+0 1 3
+0 3 5
+1 2 1
+2 3 8
+Sample Output 1 :
+1 2 1
+0 1 3
+0 3 5
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+
+class Edge implements Comparable<Edge> {
+    int source, destination, weight;
+
+    @Override
+    public int compareTo(Edge o) {
+        // sorting in increasing order
+        return this.weight - o.weight;
+    }
+}
+
+public class Solution {
+
+	private static void kruskal(Edge[] input, int v) {
+        // we need to sort the Array
+        Arrays.sort(input);
+
+        // creating an output array of size vertex-1 for storing MST
+        Edge[] output = new Edge[v-1];
+
+        int[] parent = new int[v];
+        // initially every vertex parent is it itself
+        for(int i=0; i<v; i++) {
+            parent[i] = i;
+        }
+
+        int count = 0;
+        // it will represent the current edge
+        int i = 0;
+        // till count is not equal to vertex-1, keep on finding MST
+        while(count != v-1) {
+            Edge currentEdge = input[i];
+            // we have to check whether current edge is making cycle or not
+
+            // We have to check the parent of both the edges of first edge object
+            // if it is not present then make an edge
+            int sourceParent = findParent(currentEdge.source, parent);
+            int destinationParent = findParent(currentEdge.destination, parent);
+
+            // if values of both are same then do not add it as a edge
+            // if not then add it (because no cycle will produce)
+            if(sourceParent != destinationParent) {
+                // as we have to maintain the count, so we'll add it to that index
+                output[count] = currentEdge;
+                count++;
+                parent[sourceParent] = destinationParent;
+            }
+            i++;
+        }
+
+        for(int j=0; j<v-1; j++) {
+            if(output[j].source < output[j].destination) {
+                System.out.println(output[j].source + " " + output[j].destination + " " + output[j].weight);
+            }
+            else {
+                System.out.println(output[j].destination + " " + output[j].source + " " + output[j].weight);
+            }
+        }
+
+    }
+
+    private static int findParent(int v, int[] parent) {
+        if(parent[v] == v) {
+            return v;
+        }
+        // if not equal then find the parent of the element stored in that parent index
+        return findParent(parent[v], parent);
+    }
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+        // V = vertices
+        int V = sc.nextInt();
+        // E = edges
+        int E = sc.nextInt();
+
+        // creating an Array of type edge of size E for storing all the edges
+        Edge[] input = new Edge[E];
+
+        // loop for storing all the edges in an Array
+        for(int i=0; i<E; i++) {
+            // creating an edge class object
+            input[i] = new Edge();
+            // taking inputs
+            input[i].source = sc.nextInt();
+            input[i].destination = sc.nextInt();
+            input[i].weight = sc.nextInt();
+        }
+        kruskal(input, V);
+	}
+}
