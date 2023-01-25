@@ -1,0 +1,49 @@
+Maximum Subarray Sum
+
+This problem was asked by Amazon.
+Given an array of numbers, find the maximum sum of any contiguous subarray of the array.
+For example, given the array [34, -50, 42, 14, -5, 86], the maximum sum would be 137, since we would take elements 42, 14, -5, and 86.
+Given the array [-5, -1, -8, -9], the maximum sum would be -1.
+
+Follow up: Do this in O(N) time.
+
+Input Format:
+The first line of input contains size of array, which is denoted by N and second line of input contains N space separated integers.
+
+Output Format:
+The first and only line of output should print the maximum subarray sum, as described in the description.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+import java.util.Scanner;
+
+public class Main {
+	
+	public static int maxSubArray(int[] nums) {
+      int maxSum = nums[0];
+      int sum = 0;
+      int minSum = 0;
+      for (int num : nums) {
+        // prefix Sum
+        sum += num;
+        // update maxSum
+        maxSum = Math.max(maxSum, sum - minSum);
+        // update minSum
+        minSum = Math.min(minSum, sum);
+      }
+      return maxSum;
+  }
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt() ;
+        int[] input = new int[n];
+        int i = 0 ;
+        while(i < n) {
+            input[i] = sc.nextInt();
+            i++ ;
+        }
+		int ans = maxSubArray(input);
+		System.out.print(ans);
+	}
+}
